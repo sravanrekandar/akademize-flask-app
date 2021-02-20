@@ -1,54 +1,25 @@
 """Flask App."""
-from flask import Flask
+from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
+from flask_appconfig import AppConfig
+from .nav import nav
+from .frontend import frontend
+from flask_debug import Debug
 
-app = Flask(__name__)
-
-header_html = """
-<p>
-    <a href="/">Home</a>
-    <a href="/contact">Contact</a>
-    <a href="/dynamic/Sravan">Message</a>
-</p>
-"""
+app = Flask(
+    __name__,
+)
+# We use Flask-Appconfig here, but this is not a requirement
+AppConfig(app)
+Debug(app)
+Bootstrap(app)
+nav.init_app(app)
+app.register_blueprint(frontend)
 
 
 @app.route("/")
-def hello():
-    """Hello."""
-    return f"""
-        {header_html}
-        <div>
-            <h1>My First Flask App!</h1>
-            <p>Started today</p>
-        <div>
-    """
-
-
-@app.route("/contact")
-def contact():
-    """Contact View."""
-    return f"""
-        {header_html}
-        <div>
-            <h1>Contact!</h1>
-            <p>
-                Phone XXX
-                <br>
-                Address XXX
-                XXXX
-                XXXXX
-            </p>
-        <div>
-    """
-
-
-@app.route("/dynamic/<name>")
-def dynamic_content(name):
-    """Content."""
-    return f"""
-        {header_html}
-        <p>Hello {name}</p>
-    """
+def index():
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

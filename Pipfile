@@ -5,11 +5,21 @@ name = "pypi"
 
 [packages]
 flask = "1.1.2"
+flask-bootstrap = "*"
+flask-nav = "*"
+flask-appconfig = "*"
+flask-wtf = "*"
+flask-cli = "*"
+email-validator = "*"
 
 [dev-packages]
 flake8 = "*"
 black = "*"
 pylint = "*"
+flask-debug = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
