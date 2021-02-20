@@ -14,6 +14,7 @@ intact. #}
 {% block content %}
 <div class="container">
   {%- with messages = get_flashed_messages(with_categories=True) %}
+
   {%- if messages %}
   <div class="row">
     <div class="col-md-12">
@@ -21,6 +22,7 @@ intact. #}
     </div>
   </div>
   {%- endif %}
+
   {%- endwith %}
   <div class="jumbotron">
     <h1>Welcome to Flask-Bootstrap</h1>
